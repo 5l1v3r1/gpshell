@@ -1,6 +1,6 @@
 /*
  ============================================================================
- Name        : gpshell.cpp
+ Name        : gpshell.cc
  Author      : Shane Farmer
  Version     :
  Copyright   : Copyright © 2012 NullPointer Software. All rights reserved.
@@ -8,11 +8,25 @@
  ============================================================================
  */
 
+#include <string>
 #include <iostream>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 using namespace std;
 
 int main(void) {
-	cout << "Hello World" << endl; /* prints Hello World */
+	const char* in;
+
+	while ((in = readline("> "))) {
+		string line(in);
+
+		if(!line.empty()) {
+			add_history(in);
+		}
+
+		cout << ":: " << line << endl; /* prints Hello World */
+	}
+
 	return 0;
 }
